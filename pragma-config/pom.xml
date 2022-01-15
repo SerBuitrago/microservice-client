@@ -16,7 +16,7 @@
 	<artifactId>pragma-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pragma-config</name>
-	<description>Config Microservice Client</description>
+	<description>Config - Microservice Client</description>
 
 	<properties>
 		<java.version>11</java.version>
