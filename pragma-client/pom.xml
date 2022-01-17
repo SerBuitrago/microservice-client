@@ -76,12 +76,6 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
-		<!-- ZIPKIN -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
-		</dependency>
-
 		<!-- SLEUTH -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

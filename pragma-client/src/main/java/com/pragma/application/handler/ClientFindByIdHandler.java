@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClientFindByIdHandler {
 
-	private IClientRepository clientRepository;
+	private final IClientRepository clientRepository;
 
 	public Client findById(Long id) {
 		return clientRepository.findById(id);

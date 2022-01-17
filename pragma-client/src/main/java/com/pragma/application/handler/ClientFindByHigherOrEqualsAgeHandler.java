@@ -1,5 +1,18 @@
 package com.pragma.application.handler;
 
-public class ClientFindByHigherOrEqualsAgeHandler {
+import java.util.List;
 
+import com.pragma.domain.model.Client;
+import com.pragma.domain.repository.IClientRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public class ClientFindByHigherOrEqualsAgeHandler {
+	
+	private final IClientRepository clientRepository;
+	
+	public List<Client> findByHigherOrEqualsAge(Integer age){
+		return clientRepository.findByHigherOrEqualsAge(age);
+	}
 }
