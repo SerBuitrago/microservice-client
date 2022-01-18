@@ -5,17 +5,16 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 import com.pragma.domain.Image;
-import com.pragma.infrastructure.rest.dto.ClientDto;
-import com.pragma.infrastructure.rest.dto.ImageMysqlDto;
+import com.pragma.infrastructure.rest.dto.ImageMongoDbDto;
 
 @Mapper(componentModel = "spring")
 public interface IImageMapper {
 
-	ImageMysqlDto toDto(Image client);
+	ImageMongoDbDto toDto(Image image);
 
-	List<ImageMysqlDto> toDtoList(List<Image> clients);
+	List<ImageMongoDbDto> toDtoList(List<Image> images);
 
-	Image toEntity(ImageMysqlDto clientDto);
+	Image toEntity(ImageMongoDbDto imageMongoDbDto);
 
-	List<Image> toEntityList(List<ImageMysqlDto> clientDtos);
+	List<Image> toEntityList(List<ImageMongoDbDto> imageMongoDbDtos);
 }

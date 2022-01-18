@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ImageEntity {
 	
 	@Id
-	private Long id;
+	private String _id;
 	
 	private String contentType;
 	

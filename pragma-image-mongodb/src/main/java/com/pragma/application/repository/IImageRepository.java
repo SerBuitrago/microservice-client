@@ -10,9 +10,9 @@ public interface IImageRepository {
 	
 	List<Image> findAll();
 	
-	<T> Image save(Image image, T file);
+	<T> Image save(T file);
 	
-	<T> Image update(Image image, T file);
+	<T> Image update(T file);
 	
 	boolean deleteById(String _id);
 }
