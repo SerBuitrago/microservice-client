@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pragma.application.repository.IImageRepository;
 import com.pragma.domain.Image;
@@ -11,6 +12,9 @@ import com.pragma.infrastructure.exception.PragmaException;
 import com.pragma.infrastructure.persistence.entity.ImageEntity;
 import com.pragma.infrastructure.persistence.mapper.IImageEntityMapper;
 import com.pragma.infrastructure.persistence.repository.IImageEntityRepository;
+import com.pragma.infrastructure.rest.mapper.IImageMapper;
+
+import static com.pragma.infrastructure.rest.validate.ImageValidate.fileImageMongoDb;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +24,7 @@ public class ImageEntityService implements IImageRepository {
 
 	private final IImageEntityRepository iImageEntityRepository;
 	private final IImageEntityMapper iImageEntityMapper;
+	private final IImageMapper iImageMapper;
 
 	@Override
 	public Image findById(String _id) {
@@ -34,13 +39,13 @@ public class ImageEntityService implements IImageRepository {
 	}
 
 	@Override
-	public <T> Image save(Image image, T file) {
-		// TODO Auto-generated method stub
-		return null;
+	public <T> Image save(T file) {
+		Image image = iImageMapper.toEntity(fileImageMongoDb((MultipartFile) file));
+		return iImageEntityMapper.toDomain(iImageEntityRepository.save(iImageEntityMapper.toEntity(image)));
 	}
 
 	@Override
-	public <T> Image update(Image image, T file) {
+	public <T> Image update(T file) {
 		// TODO Auto-generated method stub
 		return null;
 	}
