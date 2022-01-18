@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ClientDto<T> {
+	
 	private Long id;
 	private String name;
 	private String subname;
@@ -13,4 +14,7 @@ public class ClientDto<T> {
 	private Long document;
 	private Integer age;
 	private String cityBirth;
+	
+	private Long idImageMysql;
+	private String idImageMongoDB;
 }

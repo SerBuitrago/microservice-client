@@ -23,13 +23,13 @@ public class ImageService implements IImageRepository {
 	}
 
 	@Override
-	public <T> Image save(Image image, T file) {
-		return iImageRepository.save(image, file);
+	public <T> Image save(T file) {
+		return iImageRepository.save(file);
 	}
 
 	@Override
-	public <T> Image update(Image image, T file) {
-		return iImageRepository.update(image, file);
+	public <T> Image update(Long id, T file) {
+		return iImageRepository.update(id, file);
 	}
 
 	@Override

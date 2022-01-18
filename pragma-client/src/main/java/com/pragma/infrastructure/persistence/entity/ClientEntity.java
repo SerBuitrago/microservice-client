@@ -31,4 +31,10 @@ public class ClientEntity {
 	
 	@Column(name = "city_birth", nullable = false, length = 100)
 	private String cityBirth;
+	
+	@Column(name = "id_image_mysql", nullable = false)
+	private Long idImageMysql;
+	
+	@Column(name = "id_image_mongodb", nullable = false)
+	private String idImageMongoDB;
 }

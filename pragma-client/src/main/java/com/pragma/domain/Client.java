@@ -18,4 +18,7 @@ public class Client {
 	private Long document;
 	private Integer age;
 	private String cityBirth;
+	
+	private Long idImageMysql;
+	private String idImageMongoDB;
 }
