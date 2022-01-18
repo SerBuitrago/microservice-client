@@ -1,9 +1,9 @@
-package com.pragma.domain.repository;
+package com.pragma.application.repository;
 
 import java.util.List;
 
-import com.pragma.domain.model.Client;
-import com.pragma.domain.model.TypeDocument;
+import com.pragma.domain.Client;
+import com.pragma.domain.TypeDocument;
 
 public interface IClientRepository {
 

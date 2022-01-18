@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.pragma.domain.model.Client;
+import com.pragma.domain.Client;
 import com.pragma.infrastructure.persistence.entity.ClientEntity;
 
 @Mapper(componentModel = "spring")

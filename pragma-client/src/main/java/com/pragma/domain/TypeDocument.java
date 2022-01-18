@@ -1,4 +1,4 @@
-package com.pragma.domain.model;
+package com.pragma.domain;
 
 public enum TypeDocument {
 	TI, CC, CE

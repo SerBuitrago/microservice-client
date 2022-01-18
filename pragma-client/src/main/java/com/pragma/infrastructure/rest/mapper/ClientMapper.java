@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.pragma.domain.model.Client;
-import com.pragma.domain.model.TypeDocument;
+import com.pragma.domain.Client;
+import com.pragma.domain.TypeDocument;
 import com.pragma.infrastructure.rest.dto.ClientDto;
 
 @Mapper(componentModel = "spring")

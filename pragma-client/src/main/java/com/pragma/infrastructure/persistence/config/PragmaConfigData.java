@@ -13,9 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @EnableJpaRepositories(
-	    basePackages = "com.pragma.infrastructure.persistence.repository")
+    basePackages = "com.pragma.infrastructure.persistence.repository")
 @ConfigurationProperties("spring.datasource")
-@Slf4j
 @NoArgsConstructor
 @Getter
 @Setter
