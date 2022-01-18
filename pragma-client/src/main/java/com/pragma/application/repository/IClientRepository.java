@@ -13,13 +13,13 @@ public interface IClientRepository {
 
 	List<Client> findAll();
 
-	List<Client> findByType(String type);
+	List<Client> findByType(TypeDocument type);
 
 	List<Client> findByHigherOrEqualsAge(Integer age);
 
-	<A> Client save(Client client, A file);
+	<A> Client save(Client client, A fileMysql, A fileMongoDb);
 
-	<A> Client update(Client client, A file);
+	<A> Client update(Client client, A fileMysql, A fileMongoDb);
 
 	boolean deleteById(Long id);
 }

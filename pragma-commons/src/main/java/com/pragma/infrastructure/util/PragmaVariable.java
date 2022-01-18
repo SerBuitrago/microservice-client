@@ -12,7 +12,12 @@ public class PragmaVariable {
 	
 	public static final String ENDPOINT_CONTROLLER_CLIENT = ENDPOINT_CONTROLLER + "/client";
 	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_BY_ID = METHOD_FIND_BY_ID;
+	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_TYPE_AND_DOCUMENT = "/find/type/{type}/document/{document}";
 	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_ALL = METHOD_FIND_ALL;
+	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_ALL_HIGHER_OR_EQUALS_AGE = "/all/find/age/{age}";
+	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_ALL_TYPE = "/all/find/type/{type}";
+	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_SAVE = METHOD_SAVE;
+	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_UPDATE = METHOD_UPDATE;
 	public static final String ENDPOINT_CONTROLLER_CLIENT_METHOD_DELETE_BY_ID = METHOD_DELETE_BY_ID;
 	
 	public static final String ENDPOINT_CONTROLLER_IMAGE_MYSQL = ENDPOINT_CONTROLLER + "/image/mysql";

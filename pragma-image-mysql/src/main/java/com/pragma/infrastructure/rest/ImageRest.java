@@ -18,16 +18,14 @@ import com.pragma.application.service.ImageService;
 import com.pragma.infrastructure.rest.dto.ImageMysqlDto;
 import com.pragma.infrastructure.rest.mapper.IImageMapper;
 
-import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_DELETE_BY_ID;
-import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_FIND_ALL;
-import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_SAVE;
-import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE;
 import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL;
+import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_DELETE_BY_ID;
+import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_FIND_ALL;
+import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_SAVE;
+import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_UPDATE;
 import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_FIND_BY_ID;
 
 import java.util.List;
-
-import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_DELETE_BY_ID;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -36,34 +34,33 @@ public class ImageRest {
 
 	@Autowired
 	ImageService imageService;
-	
+
 	@Autowired
 	IImageMapper iImageMapper;
 
 	@GetMapping(value = ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_FIND_BY_ID)
-	public ResponseEntity<ImageMysqlDto> findById(Long id) {
+	public ResponseEntity<ImageMysqlDto> findById(@PathVariable("id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(iImageMapper.toDto(imageService.findById(id)));
 	}
-	
-	@GetMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_FIND_ALL)
+
+	@GetMapping(value = ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_FIND_ALL)
 	public ResponseEntity<List<ImageMysqlDto>> findAll() {
 		return ResponseEntity.status(HttpStatus.OK).body(iImageMapper.toDtoList(imageService.findAll()));
 	}
 
-	@PostMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_SAVE)
-	public ResponseEntity<ImageMysqlDto> save(@RequestParam("fileMongoDB") MultipartFile multipartFile) {
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(iImageMapper.toDto(imageService.save(multipartFile)));
+	@PostMapping(value = ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_SAVE)
+	public ResponseEntity<ImageMysqlDto> save(@RequestParam("fileMysql") MultipartFile multipartFile) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(iImageMapper.toDto(imageService.save(multipartFile)));
 	}
 
-	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE)
-	public ResponseEntity<ImageMysqlDto> update(@RequestParam("id") Long id, @RequestParam("fileMongoDB") MultipartFile multipartFile) {
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(iImageMapper.toDto(imageService.update(id, multipartFile)));
+	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_UPDATE)
+	public ResponseEntity<ImageMysqlDto> update(@RequestParam("id") Long id,
+			@RequestParam("fileMysql") MultipartFile multipartFile) {
+		return ResponseEntity.status(HttpStatus.OK).body(iImageMapper.toDto(imageService.update(id, multipartFile)));
 	}
 
-	@DeleteMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_DELETE_BY_ID)
-	public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+	@DeleteMapping(value = ENDPOINT_CONTROLLER_IMAGE_MYSQL_METHOD_DELETE_BY_ID)
+	public ResponseEntity<Boolean> deleteById(@PathVariable("id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(imageService.deleteById(id));
 	}
 }

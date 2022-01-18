@@ -29,7 +29,7 @@ public class ClientService implements IClientRepository{
 	}
 
 	@Override
-	public List<Client> findByType(String type) {
+	public List<Client> findByType(TypeDocument type) {
 		return clientRepository.findByType(type);
 	}
 
@@ -39,13 +39,13 @@ public class ClientService implements IClientRepository{
 	}
 
 	@Override
-	public <A> Client save(Client client, A file) {
-		return clientRepository.save(client, file);
+	public <A> Client save(Client client, A fileMysql, A fileMongoDb) {
+		return clientRepository.save(client, fileMysql, fileMongoDb);
 	}
 
 	@Override
-	public <A> Client update(Client client, A file) {
-		return clientRepository.update(client, file);
+	public <A> Client update(Client client, A fileMysql, A fileMongoDb) {
+		return clientRepository.update(client, fileMysql, fileMongoDb);
 	}
 
 	@Override

@@ -41,7 +41,7 @@ public class ClientEntityService implements IClientRepository{
 	}
 
 	@Override
-	public List<Client> findByType(String type) {
+	public List<Client> findByType(TypeDocument type) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -53,13 +53,13 @@ public class ClientEntityService implements IClientRepository{
 	}
 
 	@Override
-	public <A> Client save(Client client, A file) {
+	public <A> Client save(Client client, A fileMysql, A fileMongoDb) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <A> Client update(Client client, A file) {
+	public <A> Client update(Client client, A fileMysql, A fileMongoDb) {
 		// TODO Auto-generated method stub
 		return null;
 	}
