@@ -1,0 +1,3 @@
+cinema:
+  swagger:
+    rest: "com.pragma.infrastructure.rest"

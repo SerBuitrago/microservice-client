@@ -8,8 +8,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version>
-		<relativePath /> 
+		<version>2.5.6</version>
+		<relativePath />
 	</parent>
 
 	<groupId>com.pragma</groupId>
@@ -20,7 +20,10 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud.version>2021.0.0</spring-cloud.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<mapstruct.version>1.2.0.Final</mapstruct.version>
+		<spring-cloud.version>2020.0.4</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -97,6 +100,26 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- MAPSTRUCT -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-jdk8</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<!-- PRAGMA-COMMONS -->
+		<dependency>
+			<groupId>com.pragma</groupId>
+			<artifactId>pragma-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
