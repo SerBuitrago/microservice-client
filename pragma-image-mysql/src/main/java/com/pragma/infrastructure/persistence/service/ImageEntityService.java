@@ -16,27 +16,21 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class ImageEntityService implements IImageRepository{
+public class ImageEntityService implements IImageRepository {
 
 	private final IImageEntityRepository iImageEntityRepository;
 	private final IImageEntityMapper iImageEntityMapper;
 
+	@Override
 	public Image findById(Long id) {
 		Optional<ImageEntity> optional = iImageEntityRepository.findById(id);
 		return iImageEntityMapper.toDomain(optional
-				.orElseThrow(() -> new PragmaException("No se ha encontrado ninguna imagen con el id " + id + ".")));
-	}
-
-	@Override
-	public Image findByClient(Long idClient) {
-		// TODO Auto-generated method stub
-		return null;
+				.orElseThrow(() -> new PragmaException("No se encontrado ninguna imagen con el id " + id + ".")));
 	}
 
 	@Override
 	public List<Image> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return iImageEntityMapper.toDomainList(iImageEntityRepository.findAll());
 	}
 
 	@Override
@@ -53,7 +47,8 @@ public class ImageEntityService implements IImageRepository{
 
 	@Override
 	public boolean deleteById(Long id) {
-		// TODO Auto-generated method stub
-		return false;
+		findById(id);
+		iImageEntityRepository.deleteById(id);
+		return true;
 	}
 }

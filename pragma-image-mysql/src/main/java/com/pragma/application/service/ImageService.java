@@ -18,11 +18,6 @@ public class ImageService implements IImageRepository {
 	}
 
 	@Override
-	public Image findByClient(Long idClient) {
-		return iImageRepository.findByClient(idClient);
-	}
-
-	@Override
 	public List<Image> findAll() {
 		return iImageRepository.findAll();
 	}

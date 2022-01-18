@@ -10,11 +10,11 @@ import com.pragma.infrastructure.persistence.entity.ImageEntity;
 @Mapper(componentModel = "spring")
 public interface IImageEntityMapper {
 
-	Image toDomain(ImageEntity clientEntity);
+	Image toDomain(ImageEntity imageEntity);
 
-	List<Image> toDomainList(List<ImageEntity> clientEntities);
+	List<Image> toDomainList(List<ImageEntity> imageEntities);
 
-	ImageEntity toEntity(Image client);
+	ImageEntity toEntity(Image image);
 
 	List<ImageEntity> toEntityList(List<Image> images);
 }
