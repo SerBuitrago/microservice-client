@@ -19,6 +19,10 @@ public class Pragma {
 		return string != null && string.trim().length() > 0;
 	}
 	
+	public static boolean isLong(Long value) {
+		return value != null && value > 0;
+	}
+	
 	public static Map<String, String> file(MultipartFile file){
 		if (file == null || file.isEmpty())
 			throw new PragmaException("No se ha recibido la imagen.");

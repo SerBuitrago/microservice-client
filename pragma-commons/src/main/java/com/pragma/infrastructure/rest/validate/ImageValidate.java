@@ -8,6 +8,7 @@ import com.pragma.infrastructure.rest.dto.ImageMysqlDto;
 
 import static com.pragma.infrastructure.util.Pragma.file;
 import static com.pragma.infrastructure.util.Pragma.isString;
+import static com.pragma.infrastructure.util.Pragma.isLong;
 
 import java.util.Map;
 
@@ -29,5 +30,13 @@ public class ImageValidate {
 	public static ImageMysqlDto fileImageMysql(MultipartFile file) {
 		Map<String, String> response = file(file);
 		return new ImageMysqlDto(0L, response.get("filename"), response.get("contentType"), response.get("image"));
+	}	
+	
+	public static ImageMysqlDto fileImageMysql(Long id, MultipartFile file) {
+		if(!isLong(id))
+			new PragmaException("El id de la imagen no es valida.");
+		ImageMysqlDto image = fileImageMysql(file);
+		image.setId(id);
+		return image;
 	}	
 }
