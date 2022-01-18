@@ -20,7 +20,7 @@ spring:
           predicates:
             - Path=/api/client/**
         - id: pragma-image-mysql
-          uri: pragma-image-mysql
+          uri: lb://pragma-image-mysql
           predicates:
             - Path=/api/image/mysql/**
         - id: pragma-image-mongodb
