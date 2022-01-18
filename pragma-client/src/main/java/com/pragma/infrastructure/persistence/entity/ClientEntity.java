@@ -2,10 +2,14 @@ package com.pragma.infrastructure.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.pragma.domain.TypeDocument;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +29,10 @@ public class ClientEntity {
 	
 	private String name;
 	private String subname;
-	private String type;
+	
+	@Enumerated(EnumType.STRING)
+	private TypeDocument type;
+	
 	private Long document;
 	private int age;
 	

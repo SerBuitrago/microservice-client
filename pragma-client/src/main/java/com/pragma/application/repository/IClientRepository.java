@@ -19,7 +19,7 @@ public interface IClientRepository {
 
 	<A> Client save(Client client, A fileMysql, A fileMongoDb);
 
-	<A> Client update(Client client, A fileMysql, A fileMongoDb);
+	<A> Client update(Client client);
 
 	boolean deleteById(Long id);
 }

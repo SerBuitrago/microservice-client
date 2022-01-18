@@ -44,8 +44,8 @@ public class ClientService implements IClientRepository{
 	}
 
 	@Override
-	public <A> Client update(Client client, A fileMysql, A fileMongoDb) {
-		return clientRepository.update(client, fileMysql, fileMongoDb);
+	public <A> Client update(Client client) {
+		return clientRepository.update(client);
 	}
 
 	@Override
