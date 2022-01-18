@@ -8,7 +8,7 @@ import com.pragma.domain.Client;
 import com.pragma.infrastructure.persistence.entity.ClientEntity;
 
 @Mapper(componentModel = "spring")
-public interface ClientEntityMapper {
+public interface IClientEntityMapper {
 
 	Client toDomain(ClientEntity clientEntity);
 
@@ -16,5 +16,5 @@ public interface ClientEntityMapper {
 
 	ClientEntity toEntity(Client client);
 
-	List<ClientEntity> toEntityList(List<ClientEntity> clientEntities);
+	List<ClientEntity> toEntityList(List<Client> clients);
 }

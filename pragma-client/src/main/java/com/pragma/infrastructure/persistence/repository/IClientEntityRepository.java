@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.pragma.infrastructure.persistence.entity.ClientEntity;
 
 @Repository
-public interface ClientEntityRepository extends JpaRepository<ClientEntity, Long>{
+public interface IClientEntityRepository extends JpaRepository<ClientEntity, Long>{
 	
 	ClientEntity findByTypeAndDocument(String type, Long document);
 	

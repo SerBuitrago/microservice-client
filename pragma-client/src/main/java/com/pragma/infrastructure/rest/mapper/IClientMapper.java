@@ -9,7 +9,7 @@ import com.pragma.domain.TypeDocument;
 import com.pragma.infrastructure.rest.dto.ClientDto;
 
 @Mapper(componentModel = "spring")
-public interface ClientMapper {
+public interface IClientMapper {
 
 	ClientDto<TypeDocument> toDto(Client client);
 

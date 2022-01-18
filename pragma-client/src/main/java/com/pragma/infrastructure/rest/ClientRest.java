@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pragma.application.service.ClientService;
 import com.pragma.domain.TypeDocument;
 import com.pragma.infrastructure.rest.dto.ClientDto;
-import com.pragma.infrastructure.rest.mapper.ClientMapper;
+import com.pragma.infrastructure.rest.mapper.IClientMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +24,7 @@ import static com.pragma.infrastructure.util.PragmaVariable.ENDPOINT_CONTROLLER_
 public class ClientRest {
 
 	private ClientService clientService;
-	private ClientMapper clientMapper;
+	private IClientMapper clientMapper;
 
 	@GetMapping(value = ENDPOINT_CONTROLLER_CLIENT_METHOD_FIND_BY_ID)
 	public ResponseEntity<ClientDto<TypeDocument>> findById(Long id) {

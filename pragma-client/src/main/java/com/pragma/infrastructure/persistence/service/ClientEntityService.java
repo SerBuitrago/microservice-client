@@ -10,8 +10,8 @@ import com.pragma.domain.Client;
 import com.pragma.domain.TypeDocument;
 import com.pragma.infrastructure.exception.PragmaException;
 import com.pragma.infrastructure.persistence.entity.ClientEntity;
-import com.pragma.infrastructure.persistence.mapper.ClientEntityMapper;
-import com.pragma.infrastructure.persistence.repository.ClientEntityRepository;
+import com.pragma.infrastructure.persistence.mapper.IClientEntityMapper;
+import com.pragma.infrastructure.persistence.repository.IClientEntityRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,8 +19,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class ClientEntityService implements IClientRepository{
 
-	private final ClientEntityRepository clientEntityRepository;
-	private final ClientEntityMapper clientEntityMapper;
+	private final IClientEntityRepository clientEntityRepository;
+	private final IClientEntityMapper clientEntityMapper;
 
 	public Client findById(Long id) {
 		Optional<ClientEntity> optional = clientEntityRepository.findById(id);
