@@ -12,7 +12,7 @@ public interface IImageRepository {
 	
 	<T> Image save(T file);
 	
-	<T> Image update(T file);
+	<T> Image update(String _id, T file);
 	
 	boolean deleteById(String _id);
 }

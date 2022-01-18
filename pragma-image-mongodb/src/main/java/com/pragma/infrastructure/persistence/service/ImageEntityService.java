@@ -45,9 +45,10 @@ public class ImageEntityService implements IImageRepository {
 	}
 
 	@Override
-	public <T> Image update(T file) {
-		// TODO Auto-generated method stub
-		return null;
+	public <T> Image update(String _id, T file) {
+		Image image = iImageMapper.toEntity(fileImageMongoDb(_id, (MultipartFile) file));
+		findById(_id);
+		return iImageEntityMapper.toDomain(iImageEntityRepository.save(iImageEntityMapper.toEntity(image)));
 	}
 
 	@Override

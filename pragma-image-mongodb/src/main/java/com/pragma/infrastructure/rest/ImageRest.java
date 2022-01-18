@@ -55,9 +55,9 @@ public class ImageRest {
 	}
 
 	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE)
-	public ResponseEntity<ImageMongoDbDto> update(@RequestParam("fileMongoDB") MultipartFile multipartFile) {
+	public ResponseEntity<ImageMongoDbDto> update(@RequestParam("_id") String _id, @RequestParam("fileMongoDB") MultipartFile multipartFile) {
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(iImageMapper.toDto(imageService.update(multipartFile)));
+				.body(iImageMapper.toDto(imageService.update(_id, multipartFile)));
 	}
 
 	@DeleteMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_DELETE_BY_ID)

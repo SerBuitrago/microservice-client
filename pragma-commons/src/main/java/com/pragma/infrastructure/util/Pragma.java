@@ -15,6 +15,10 @@ public class Pragma {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Pragma.class);
 	
+	public static boolean isString(String string) {
+		return string != null && string.trim().length() > 0;
+	}
+	
 	public static Map<String, String> file(MultipartFile file){
 		if (file == null || file.isEmpty())
 			throw new PragmaException("No se ha recibido la imagen.");
