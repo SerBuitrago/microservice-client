@@ -28,8 +28,8 @@ public class ImageService implements IImageRepository {
 	}
 
 	@Override
-	public <T> Image update(T file) {
-		return iImageRepository.update(file);
+	public <T> Image update(String _id, T file) {
+		return iImageRepository.update(_id, file);
 	}
 
 	@Override
