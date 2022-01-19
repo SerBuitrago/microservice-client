@@ -17,7 +17,7 @@ public interface IClientRepository {
 
 	List<Client> findByHigherOrEqualsAge(Integer age);
 
-	<A> Client save(Client client, A fileMysql, A fileMongoDb);
+	<A> Client save(Client client, A file);
 
 	<A> Client update(Client client);
 

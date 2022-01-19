@@ -20,7 +20,7 @@ import com.pragma.infrastructure.persistence.entity.ClientEntity;
 import com.pragma.infrastructure.persistence.mapper.IClientEntityMapper;
 import com.pragma.infrastructure.persistence.repository.IClientEntityRepository;
 import com.pragma.infrastructure.rest.mapper.IClientMapper;
-import com.pragma.infrastructure.rest.validate.ClientValidate;
+import com.pragma.infrastructure.validate.ClientValidate;
 
 import lombok.RequiredArgsConstructor;
 
@@ -75,12 +75,13 @@ public class ClientEntityService implements IClientRepository {
 	}
 
 	@Override
-	public <A> Client save(Client client, A fileMysql, A fileMongoDb) {
+	public <A> Client save(Client client, A file) {
 		client = iClientMapper.toEntity(ClientValidate.save(iClientMapper.toDto(client)));
 		if (!testTypeDocument(client.getType(), client.getDocument()))
 			throw new PragmaException("Ya existe un cliente con ese documento y tipo de documento.");
-		client.setIdImageMysql(iImageMysqlFeign.save((MultipartFile) fileMysql).getId());
-		client.setIdImageMongoDB(iImageMongoDbFeign.save((MultipartFile) fileMongoDb).get_id());
+		MultipartFile multiPartFile = (MultipartFile) file;
+		client.setIdImageMysql(iImageMysqlFeign.save(multiPartFile).getId());
+		client.setIdImageMongoDB(iImageMongoDbFeign.save(multiPartFile).get_id());
 		client = clientEntityMapper.toDomain(clientEntityRepository.save(clientEntityMapper.toEntity(client)));
 		if(client == null)
 			throw new PragmaException("No se ha registrado el cliente.");
@@ -100,8 +101,8 @@ public class ClientEntityService implements IClientRepository {
 	@Override
 	public boolean deleteById(Long id) {
 		Client client = findById(id);
-		iImageMongoDbFeign.deleteById(client.getIdImageMongoDB());
 		iImageMysqlFeign.deleteById(client.getIdImageMysql());
+		iImageMongoDbFeign.deleteById(client.getIdImageMongoDB());
 		deleteById(id);
 		return true;
 	}

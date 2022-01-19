@@ -39,8 +39,8 @@ public class ClientService implements IClientRepository{
 	}
 
 	@Override
-	public <A> Client save(Client client, A fileMysql, A fileMongoDb) {
-		return clientRepository.save(client, fileMysql, fileMongoDb);
+	public <A> Client save(Client client, A file) {
+		return clientRepository.save(client, file);
 	}
 
 	@Override

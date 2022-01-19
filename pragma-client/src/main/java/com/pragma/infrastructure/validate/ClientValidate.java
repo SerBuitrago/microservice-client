@@ -1,5 +1,5 @@
 
-package com.pragma.infrastructure.rest.validate;
+package com.pragma.infrastructure.validate;
 
 import com.pragma.infrastructure.exception.PragmaException;
 import com.pragma.infrastructure.rest.dto.ClientDto;
@@ -9,7 +9,7 @@ import static com.pragma.infrastructure.util.Pragma.isLong;
 import static com.pragma.infrastructure.util.Pragma.isInteger;
 
 public class ClientValidate {
-	public static <T> ClientDto<T> save(ClientDto<T> clientDto){
+	public static ClientDto save(ClientDto clientDto){
 		if(clientDto == null)
 			throw new PragmaException("No se ha validado el cliente.");
 		if(!isString(clientDto.getName()))
@@ -18,8 +18,7 @@ public class ClientValidate {
 			throw new PragmaException("El apellido del cliente es obligatorio.");
 		if(!isString(clientDto.getCityBirth()))
 			throw new PragmaException("La ciudad de nacimiento del cliente es obligatorio.");
-		Enum<?> valueEnum = (Enum<?>) clientDto.getType();
-		if(valueEnum == null || !isString(valueEnum.name()))
+		if(clientDto.getType() == null || !isString(clientDto.getType().name()))
 			throw new PragmaException("El tipo de documento del cliente es obligatorio.");
 		if(!isLong(clientDto.getDocument()))
 			throw new PragmaException("El documento del cliente es obligatorio.");
@@ -30,7 +29,7 @@ public class ClientValidate {
 		return clientDto;
 	}
 	
-	public static <T> ClientDto<T> update(ClientDto<T> clientDto){
+	public static ClientDto update(ClientDto clientDto){
 		clientDto = save(clientDto);
 		if(!isLong(clientDto.getId()))
 			throw new PragmaException("El id del cliente es obligatorio.");

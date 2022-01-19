@@ -1,6 +1,14 @@
 package com.pragma.infrastructure.util;
 
 public class PragmaVariable {
+	
+	public static final String MICROSERVICE_CLIENT = "pragma-client";
+	public static final String MICROSERVICE_IMAGE_MYSQL = "pragma-image-mysql";
+	public static final String MICROSERVICE_IMAGE_MONGODB = "pragma-image-mongodb";
+	
+	public static final String CIRCUIT_BREAKER_CLIENT = "pragmaClient";
+	public static final String CIRCUIT_BREAKER_CLIENT_METHOD_SAVE = "fallBackSave";
+	public static final String CIRCUIT_BREAKER_CLIENT_METHOD_DELETE = "fallBackDelete";
 
 	public static final String METHOD_FIND_BY_ID = "/{id}";
 	public static final String METHOD_FIND_ALL = "";
