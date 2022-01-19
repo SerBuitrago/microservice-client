@@ -53,6 +53,7 @@ public class ImageEntityService implements IImageRepository {
 
 	@Override
 	public boolean deleteById(Long id) {
+		System.out.println("Service Image: Eliminado "+id);
 		findById(id);
 		iImageEntityRepository.deleteById(id);
 		return true;
