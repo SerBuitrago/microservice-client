@@ -26,6 +26,8 @@ public class ClientValidate {
 			throw new PragmaException("El edad del cliente es obligatorio.");
 		if(clientDto.getAge() < 18)
 			throw new PragmaException("La edad minima del cliente es 18 años.");
+		if(clientDto.getAge() >= 100)
+			throw new PragmaException("La edad maxima del cliente es 100 años.");
 		return clientDto;
 	}
 	
