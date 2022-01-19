@@ -2,6 +2,7 @@ package com.pragma.infrastructure.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,14 +50,14 @@ public class ImageRest {
 		return ResponseEntity.status(HttpStatus.OK).body(iImageMapper.toDtoList(imageService.findAll()));
 	}
 
-	@PostMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_SAVE)
-	public ResponseEntity<ImageMongoDbDto> save(@RequestParam("fileMongoDB") MultipartFile multipartFile) {
+	@PostMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_SAVE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ImageMongoDbDto> save(@RequestPart("file") MultipartFile multipartFile) {
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(iImageMapper.toDto(imageService.save(multipartFile)));
 	}
 
-	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE)
-	public ResponseEntity<ImageMongoDbDto> update(@RequestParam("_id") String _id, @RequestParam("fileMongoDB") MultipartFile multipartFile) {
+	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ImageMongoDbDto> update(@RequestParam("_id") String _id, @RequestPart("file") MultipartFile multipartFile) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(iImageMapper.toDto(imageService.update(_id, multipartFile)));
 	}

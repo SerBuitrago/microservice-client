@@ -11,11 +11,11 @@ import com.pragma.infrastructure.rest.dto.ClientDto;
 @Mapper(componentModel = "spring")
 public interface IClientMapper {
 
-	ClientDto<TypeDocument> toDto(Client client);
+	ClientDto toDto(Client client);
 
-	List<ClientDto<TypeDocument>> toDtoList(List<Client> clients);
+	List<ClientDto> toDtoList(List<Client> clients);
 
-	Client toEntity(ClientDto<TypeDocument> clientDto);
+	Client toEntity(ClientDto clientDto);
 
-	List<Client> toEntityList(List<ClientDto<TypeDocument>> clientDtos);
+	List<Client> toEntityList(List<ClientDto> clientDtos);
 }

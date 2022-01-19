@@ -25,7 +25,7 @@ resilience4j:
                     - java.io.IOException
                     - java.net.ConnectException      
         instances:
-            pragmaClient:
+            mainService:
                 baseConfig: default
 spring:
   application:
