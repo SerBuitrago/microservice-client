@@ -80,7 +80,7 @@ public class ClientRest {
 	public ResponseEntity<List<ClientDto>> findByTypeAll(@PathVariable("type") TypeDocument type) {
 		return ResponseEntity.status(HttpStatus.OK).body(clientMapper.toDtoList(clientService.findByType(type)));
 	}
-	
+
 	@CircuitBreaker(name = CIRCUIT_BREAKER_CLIENT, fallbackMethod = CIRCUIT_BREAKER_CLIENT_METHOD_SAVE)
 	@PostMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_SAVE)
 	@ApiOperation(value = "Servicio registrar un cliente", httpMethod = "POST")
@@ -88,8 +88,8 @@ public class ClientRest {
 	public ResponseEntity<ClientDto> save(
 			@ApiParam(value = "Informacion Cliente Registrar", required = true) @ModelAttribute ClientDto clientDto,
 			@RequestParam("file") MultipartFile multipartFile) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(clientMapper
-				.toDto(clientService.save(clientMapper.toEntity(clientDto), multipartFile)));
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(clientMapper.toDto(clientService.save(clientMapper.toEntity(clientDto), multipartFile)));
 	}
 
 	@PutMapping(value = ENDPOINT_CONTROLLER_IMAGE_MONGODB_METHOD_UPDATE)
@@ -103,12 +103,14 @@ public class ClientRest {
 	public ResponseEntity<Boolean> deleteById(@PathVariable("id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(clientService.deleteById(id));
 	}
-	
-	public ResponseEntity<PragmaExceptionModel> fallBackSave(Exception e){
-		return new ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(PragmaExceptionModel.builder(e, HttpStatus.INTERNAL_SERVER_ERROR.value()));
+
+	public ResponseEntity<PragmaExceptionModel> fallBackSave(Exception e) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(PragmaExceptionModel.builder(e, HttpStatus.INTERNAL_SERVER_ERROR.value()));
 	}
-	
-	public ResponseEntity<PragmaExceptionModel> fallBackDelete(Exception e){
-		return new ResponseEntity<>(PragmaExceptionModel.builder(e, HttpStatus.INTERNAL_SERVER_ERROR.value()), HttpStatus.INTERNAL_SERVER_ERROR);
+
+	public ResponseEntity<PragmaExceptionModel> fallBackDelete(Exception e) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(PragmaExceptionModel.builder(e, HttpStatus.INTERNAL_SERVER_ERROR.value()));
 	}
 }

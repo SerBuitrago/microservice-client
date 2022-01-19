@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pragma.application.repository.IClientRepository;
@@ -43,37 +44,43 @@ public class ClientEntityService implements IClientRepository {
 	@Autowired
 	IImageMysqlFeign iImageMysqlFeign;
 
+	@Transactional(readOnly = true)
 	public Client findById(Long id) {
 		Optional<ClientEntity> optional = clientEntityRepository.findById(id);
 		return clientEntityMapper.toDomain(optional
 				.orElseThrow(() -> new PragmaException("No se ha encontrado ningun cliente con el id " + id + ".")));
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public Client findByTypeAndDocument(TypeDocument type, Long document) {
 		Client client = clientEntityMapper
 				.toDomain(clientEntityRepository.findByTypeAndDocument(type, document));
 		if (client == null)
-			throw new PragmaException("No existe ningun client con el tipo de documento " + type.name()
+			throw new PragmaException("No existe ningun cliente con el tipo de documento " + type.name()
 					+ " y documento " + document + ".");
 		return client;
 	}
-
+	
+	@Transactional(readOnly = true)
 	@Override
 	public List<Client> findAll() {
 		return clientEntityMapper.toDomainList(clientEntityRepository.findAll());
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Client> findByType(TypeDocument type) {
 		return clientEntityMapper.toDomainList(clientEntityRepository.findByType(type));
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Client> findByHigherOrEqualsAge(Integer age) {
 		return clientEntityMapper.toDomainList(clientEntityRepository.findByHigherOrEqualsAge(age));
 	}
 
+	@Transactional
 	@Override
 	public <A> Client save(Client client, A file) {
 		client = iClientMapper.toEntity(ClientValidate.save(iClientMapper.toDto(client)));
@@ -88,6 +95,7 @@ public class ClientEntityService implements IClientRepository {
 		return client;
 	}
 
+	@Transactional
 	@Override
 	public <A> Client update(Client client) {
 		client = iClientMapper.toEntity(ClientValidate.update(iClientMapper.toDto(client)));
@@ -98,12 +106,13 @@ public class ClientEntityService implements IClientRepository {
 		return client;
 	}
 
+	@Transactional
 	@Override
 	public boolean deleteById(Long id) {
 		Client client = findById(id);
-		iImageMysqlFeign.deleteById(client.getIdImageMysql());
 		iImageMongoDbFeign.deleteById(client.getIdImageMongoDB());
-		deleteById(id);
+		iImageMysqlFeign.deleteById(client.getIdImageMysql());
+		clientEntityRepository.deleteById(id);
 		return true;
 	}
 
@@ -119,7 +128,7 @@ public class ClientEntityService implements IClientRepository {
 	
 	private Client testTypeDocument(Client client) {
 		Client aux = findById(client.getId());
-		if (!aux.getType().name().equalsIgnoreCase(client.getName())
+		if (!aux.getType().name().equalsIgnoreCase(client.getType().name())
 				|| !Objects.equals(aux.getDocument(), client.getDocument()))
 			if (!testTypeDocument(client.getType(), client.getDocument()))
 				throw new PragmaException("Ya existe un cliente con ese documento y tipo de documento.");
