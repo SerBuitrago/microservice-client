@@ -12,11 +12,6 @@ spring:
     url: jdbc:mysql://mysql-client-8:3306/${spring.application.name}?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: root
-  application:
-    zipkin: 
-        base-url: http://localhost:9411
-        sender: 
-            type: rabbit
 eureka:
   client:
     fetch-registry: true
