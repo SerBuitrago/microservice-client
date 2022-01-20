@@ -7,6 +7,8 @@ spring:
     config:
       server:
         git:
+          username: SerBuitrago
+          password: 3118938189Se3114794520
+          uri: https://github.com/SerBuitrago/microservice-client.git
+          search-paths: pragma-config-data     
           default-label: main
-          uri: https://github.com/SerBuitrago/microservice-client
-          search-paths: pragma-config-data
