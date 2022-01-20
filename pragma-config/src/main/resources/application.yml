@@ -1,0 +1,12 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: pragma-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/SerBuitrago/microservice-client.git
+          search-paths: pragma-config-data     
+          default-label: main
