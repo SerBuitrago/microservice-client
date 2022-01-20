@@ -12,8 +12,6 @@ spring:
     url: jdbc:mysql://localhost:3306/${spring.application.name}?serverTimezone=America/Bogota&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: root
     password:
-  application:
-    zipkin: http://localhost:9411
 eureka:
   client:
     fetch-registry: true
@@ -41,4 +39,6 @@ resilience4j:
         instances:
             pragmaClient:
                 baseConfig: default
-  
+spring:
+  application:
+    zipkin: http://localhost:9411
