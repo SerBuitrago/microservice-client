@@ -1,0 +1,34 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/${spring.application.name}?serverTimezone=America/Bogota&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: root
+    password:
+resilience4j:
+    circuitbreaker:
+        configs:
+            default:
+                registerHealthIndicator: true
+                slidingWindowSize: 10
+                minimumNumberOfCalls: 5
+                permittedNumberOfCallsInHalfOpenState: 3
+                waitDurationInOpenState: 5s
+                failureRateThreshold: 50
+                eventConsumerBufferSize: 10
+                recordExceptions:
+                    - org.springframework.web.client.HttpServerErrorException
+                    - java.util.concurrent.TimeoutException
+                    - java.io.IOException
+                    - java.net.ConnectException      
+        instances:
+            pragmaClient:
+                baseConfig: default
+  
