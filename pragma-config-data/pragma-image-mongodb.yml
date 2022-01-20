@@ -4,11 +4,6 @@ spring:
   data:
     mongodb:
       uri: mongodb://${MONGO_HOST:pragma-mongodb}:${MONGO_PORT:27017}/${spring.application.name}
-  application:
-    zipkin: 
-        base-url: http://localhost:9411
-        sender: 
-            type: rabbit
 eureka:
   client:
     fetch-registry: true
