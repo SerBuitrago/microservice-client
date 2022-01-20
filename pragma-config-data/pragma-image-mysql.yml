@@ -6,7 +6,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql-client-8:3306/${spring.application.name}?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false
