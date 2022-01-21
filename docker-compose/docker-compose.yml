@@ -6,33 +6,83 @@ services:
       - "8084:8084"
     restart: always
     networks:
-      - microservice-client
+      - microserviceclient
   pragma-eureka:
     image: pragma-eureka:v1
     ports:
       - "8761:8761"
     restart: always
     networks:
-      - microservice-client
+      - microserviceclient
+  pragma-gateway:
+    image: pragma-gateway:v1
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - microserviceclient
+    depends_on:
+      - pragma-config
+      - pragma-eureka
   pragma-mysql:
     image: mysql:8
     ports:
       - "3306:3306"
     restart: always
     networks:
-      - microservice-client
+      - microserviceclient
     environment:
       MYSQL_DATABASE: pragma-image-mysql
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
+  pragma-mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - microserviceclient
   pragma-image-mysql:
     image: pragma-image-mysql:v1
     restart: always
     networks:
-      - microservice-client
+      - microserviceclient
     depends_on:
       - pragma-config
       - pragma-eureka
       - pragma-mysql 
+  pragma-image-mongodb:
+    image: pragma-image-mongodb:v1
+    restart: always
+    networks:
+      - microserviceclient
+    depends_on:
+      - pragma-config
+      - pragma-eureka
+      - pragma-mongodb 
+  pragma-rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    restart: always
+    networks:
+      - microserviceclient
+  zipkin-server:
+    image: pragma-zipkin:v1
+    ports:
+      - "9411:9411"
+    restart: always
+    networks:
+      - microserviceclient
+    depends_on: 
+      - pragma-rabbitmq
+      - pragma-mysql
+    environment: 
+      RABBIT_ADDRESSES: pragma-rabbitmq:5672
+      STORAGE_TYPE: mysql
+      MYSQL_USER: pragma-zipkin
+      MYSQL_PASS: pragma-zipkin
+      MYSQL_HOST: pragma-mysql
 networks:
-  microservice-client:
+  microserviceclient:
