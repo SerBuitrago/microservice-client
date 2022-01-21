@@ -11,7 +11,7 @@ spring:
     class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://pragma-mysql:3306/${spring.application.name}?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    password:
+    password: root
 eureka:
   client:
     fetch-registry: true
