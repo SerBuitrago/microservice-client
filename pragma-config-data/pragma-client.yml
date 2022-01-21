@@ -1,18 +1,15 @@
 server:
   port: ${PORT:${SERVER_PORT:0}}
 spring:
-  autoconfigure:
-    exclude:
-    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
     class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://pragma-mysql:3306/${spring.application.name}?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://pragma-mysql:3306/${spring.application.name}
     username: root
     password: root
 eureka:
