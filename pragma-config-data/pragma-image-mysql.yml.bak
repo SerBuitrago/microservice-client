@@ -8,8 +8,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://pragma-mysql:3306/${spring.application.name}?serverTimezone=America/Santiago&allowPublicKeyRetrieval=true&useSSL=false
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://pragma-mysql:3306/${spring.application.name}
     username: root
     password: root
 eureka:
