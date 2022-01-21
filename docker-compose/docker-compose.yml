@@ -1,18 +1,37 @@
 version: '3.7'
 services:
   pragma-config:
-    images: pragma-config:v1
+    image: pragma-config:v1
     ports:
       - "8084:8084"
     restart: always
     networks:
       - microservice-client
   pragma-eureka:
-    images: pragma-eureka:v1
+    image: pragma-eureka:v1
     ports:
       - "8761:8761"
     restart: always
     networks:
       - microservice-client
+  pragma-mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - microservice-client
+    environment:
+      MYSQL_DATABASE: pragma-image-mysql
+      MYSQL_ROOT_PASSWORD: root
+  pragma-image-mysql:
+    image: pragma-image-mysql:v1
+    restart: always
+    networks:
+      - microservice-client
+    depends_on:
+      - pragma-config
+      - pragma-eureka
+      - pragma-mysql 
 networks:
   microservice-client:
